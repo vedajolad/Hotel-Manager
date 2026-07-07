@@ -1,0 +1,170 @@
+{
+  "info": {
+    "_postman_id": "4d9b8d88-8f9b-4b7f-a3e8-123456789abc",
+    "name": "Hotel Manager API",
+    "description": "Simple Hotel Manager CRUD API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "customer_id",
+      "value": "1"
+    }
+  ],
+
+  "item": [
+
+    {
+      "name": "Create Customer",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/customers",
+          "host": ["{{base_url}}"],
+          "path": ["customers"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\":\"Rahul\",\n  \"address\":\"Belagavi\",\n  \"date\":\"2026-07-07\",\n  \"gender\":\"Male\",\n  \"phone\":\"9876543210\"\n}"
+        }
+      }
+    },
+
+    {
+      "name": "Duplicate Address",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/customers",
+          "host": ["{{base_url}}"],
+          "path": ["customers"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\":\"Rahul\",\n  \"address\":\"Belagavi\",\n  \"date\":\"2026-07-07\",\n  \"gender\":\"Male\",\n  \"phone\":\"9999999999\"\n}"
+        }
+      }
+    },
+
+    {
+      "name": "Missing Required Fields",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/customers",
+          "host": ["{{base_url}}"],
+          "path": ["customers"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\":\"\",\n  \"phone\":\"\"\n}"
+        }
+      }
+    },
+
+    {
+      "name": "Get All Customers",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/customers?page=1&limit=5&search=",
+          "host": ["{{base_url}}"],
+          "path": ["customers"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "5"
+            },
+            {
+              "key": "search",
+              "value": ""
+            }
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Get Customer By ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/customers/{{customer_id}}",
+          "host": ["{{base_url}}"],
+          "path": [
+            "customers",
+            "{{customer_id}}"
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Update Customer",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/customers/{{customer_id}}",
+          "host": ["{{base_url}}"],
+          "path": [
+            "customers",
+            "{{customer_id}}"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\":\"Updated Customer\",\n  \"address\":\"Hubli\",\n  \"date\":\"2026-07-08\",\n  \"gender\":\"Female\",\n  \"phone\":\"9123456789\"\n}"
+        }
+      }
+    },
+
+    {
+      "name": "Delete Customer",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{base_url}}/customers/{{customer_id}}",
+          "host": ["{{base_url}}"],
+          "path": [
+            "customers",
+            "{{customer_id}}"
+          ]
+        }
+      }
+    }
+
+  ]
+}
